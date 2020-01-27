@@ -1,0 +1,24 @@
+<% p = current_user.features.map do |f| %>
+  <% f.project %>
+<% end %>
+<% p =  p.to_set %>
+
+<br>
+
+  <table style="border: 2px solid black">
+    <thead>
+      <tr>
+        <th>Assigned Project</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% p.each do |project| %>
+      <tr style="border: 2px solid black">
+        <td style="border: 2px solid black"><%= link_to project.project_name, user_project_path(current_user.id, project.id), method: :get %></td>
+        <td style="border: 2px solid black"><%= link_to 'Show', user_project_path(current_user.id, project.id) %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>

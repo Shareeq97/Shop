@@ -1,0 +1,61 @@
+<table>
+  <tbody >
+    <tr>
+      <td><strong>Feature Ticket Id :</strong></td>
+      <td> <%= feature.ticket_id %></td>
+    </tr>
+    <tr>
+      <td><strong>Feature Name :</strong></td> 
+      <td><%= feature.feature_name %></td>
+    </tr>
+    <tr>
+      <td><strong>Category :</strong></td>
+      <td><%= feature.category_name %></td>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>Feature Description :</strong>
+    </tr>
+    <tr>
+      <td colspan="2"><p class="feature-desc"><%= feature.feature_description %></p></td>
+    </tr>
+    <tr>
+      <td><strong>Feature Status:</strong></td>
+      <td><%= select "feature_status", "#{feature.id}", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], :selected => feature.feature_status) %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div>
+  <%= render partial: "documents/list_document", locals: {feature: feature }  %>
+</div>
+<br>
+<div>
+  <%= render partial: "tasks/list_tasks", locals: {feature: feature}  %>
+</div>
+<br>
+<div class="comment-section">
+  <div>
+    <%= render partial: "comments/comment_list", locals: {feature: feature} %>
+  </div>
+  <br>
+  <div>
+    <%= render partial: "comments/form", locals: {feature: feature} %>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $("#feature_status_<%= feature.id%>").bind('change',function(){
+      jQuery.ajax({
+        url: "/features/<%= feature.id%>/update_status",
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        type: "PATCH",
+        data: {"feature_status": this.value},
+        success: function(data) {
+          alert("Status successfully set.");
+        }
+      });
+    });
+  });
+</script>

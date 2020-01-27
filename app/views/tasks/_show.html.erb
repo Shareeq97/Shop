@@ -1,0 +1,58 @@
+<table class="task-table">
+  <tr>
+    <td>
+      <%= check_box_tag 'task_completion', task.id , task.task_completion, :class => "task-check", :id => "feature-task-#{task.id}" %>        
+    </td>
+    <td><%= task.task_name%></td>
+    <td>
+      <%= link_to "", user_project_feature_task_path(task.feature.project.user_id, task.feature.project_id, task.feature_id, task.id), class: "glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+</table>
+
+
+<script>
+  $(document).ready(function(){
+    $("#feature-task-<%=task.id%>").bind('change', function(){
+        $.ajax({
+          url: '/tasks/'+this.value+'/update_task',
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          type: 'POST',
+          data: {"task_completion": this.checked},
+          success: function(){
+            
+            var checked = document.getElementById("feature-task-<%=task.id%>").checked?1:-1;
+            var current_value = parseInt($("#tasking-<%=task.feature.id %>").text());
+            $("#tasking-<%=task.feature.id %>").text(current_value + checked+"");
+            alert('success');
+          }
+        });
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+<!-- <table>
+  <tbody>
+    <tr>
+        <td><strong>Task :</strong> <%= task.task_name %></td>
+    </tr>
+    <tr>
+        <% if request.env['PATH_INFO'] == "/users"%>
+    	   <td>   
+           </td>
+        <% else %>
+            <td><%= button_to 'Delete', user_project_feature_task_path(task.feature.project.user_id, task.feature.project_id, task.feature_id, task.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+        <% end %>
+    </tr>
+    </tr>
+  </tbody>
+</table> -->

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<div style="padding: 20px">
+	<table>
+		<tr>
+			<td><strong>Name:</strong></td>
+			<td><%= text_field :user, :to_s, readonly: true %></td>
+		</tr>
+		<tr>
+			<td><strong>Email:</strong></td>
+			<td><%= text_field :user, :email, readonly: true %></td>
+		</tr>
+		<tr>
+			<td><strong>Phone No:</strong></td>
+			<td><%= text_field :user, :phone_number, readonly: true %></td>	
+		</tr>
+	</table>
+	<br>	  
+	<%= link_to 'Edit', edit_user_path(@user) %>
+</div>

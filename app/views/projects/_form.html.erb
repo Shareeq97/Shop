@@ -1,0 +1,18 @@
+<h2>Projects</h2>
+<%= form_with(model: [ @current_user, @project ], local: true) do |form| %>
+  <div class="field">
+    <table>
+      <tr>
+        <td>
+          <%= form.label :project_name, "Create Project: " %>
+        </td>
+        <td>
+          <%= form.text_field :project_name %>
+        </td>
+        <td>
+          <%= form.submit %>      
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>

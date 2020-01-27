@@ -1,0 +1,16 @@
+// Place all the styles related to the Tasks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.task-table{
+	width: 100%;
+}
+
+.task-table tr{
+	border-bottom: 1px solid black;
+}
+
+.task-table td:nth-child(2){
+	text-align: left;
+}  

@@ -1,0 +1,37 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//form.html.erb
+.comment-section{
+	border: 1px solid red;
+	padding: 2px;
+}
+
+.comment-box{
+	border-bottom: 2px solid black;
+	margin-bottom: 3px;
+	padding: 5px;
+	width: 315px;
+	max-height: 150px;
+	overflow: auto;	
+}
+
+.commenter{
+	color: #008023;
+}
+
+.comment-item{
+	border-bottem: 2px solid green;
+}
+
+.comment-table{
+	width: 100%;
+	padding: 5px;	
+}
+
+.comment-typo{
+	width: 100%;
+}
+

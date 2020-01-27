@@ -1,0 +1,13 @@
+	<div>
+		<%= form_with(model: [feature.comments.build], url: user_project_feature_comments_path( feature.project.user, feature.project, feature), method: "post") do |form| %>
+		  <div class="field">
+		  	<table class="comment-table">
+		  		<tr>
+		  			<td><strong>Comment:</strong></td>
+		  			<td><%= form.text_area :comment_name, :class => "comment-typo" %></td>
+		  			<td><%= form.submit 'Save'%></td>
+		  		</tr>
+		  	</table>
+		  </div>
+		<% end %>
+	</div>

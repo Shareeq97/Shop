@@ -1,0 +1,10 @@
+    <h2>Hi, <%= @recipient.to_s %></h2>
+    <p>
+      The Status of Feature with <strong> Feature Name: <%= @feature.feature_name %> </strong><br> 
+      inside <strong> Project:<%= @feature.project.project_name %> </strong><br> 
+      has been changed to <strong><%= @feature.feature_status %></strong>.<br>
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>

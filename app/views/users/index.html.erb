@@ -1,0 +1,13 @@
+<% if alert %>
+  <div class="alert-message">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+<div class="project-lists">
+	<%= render partial: "projects/form" %>
+	<%= render partial: "projects/list_projects" %>
+
+	<br>
+	<%= render partial: "projects/list_assigned_projects" %>
+	
+</div>

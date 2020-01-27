@@ -1,0 +1,9 @@
+<%= form_with(model: [feature.documents.build], url: user_project_feature_documents_path( @user, @project, feature), html: { multipart: true}, method: "post",local: true) do |form| %>
+  <div class="field">
+    <%= form.label :document %> 
+    <%= form.file_field :document %>
+  </div>
+  <div class="actions">
+    <%= form.submit "Upload document" %>
+  </div>
+<% end %>

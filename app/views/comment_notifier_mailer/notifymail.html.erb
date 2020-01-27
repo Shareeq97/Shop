@@ -1,0 +1,9 @@
+    <h1>Hi, <%= @recipient.to_s %></h1>
+    <p>
+      You have got a comment on the feature with <strong> Feature Name: <%= @comment.feature.feature_name %> </strong> <br> inside <strong>Project: <%= @comment.feature.project.project_name%></strong>. 
+    </p>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+

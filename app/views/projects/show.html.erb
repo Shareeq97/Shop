@@ -1,0 +1,94 @@
+<div class="sidebar">
+  <div class="project-pro">
+    <%= @project.project_name %>
+  </div>
+  <%= link_to "Home", users_path, method: :get %>
+  <a onclick="document.getElementById('idCI').style.display='inline-block'">Current Iteration</a>
+	<a onclick="document.getElementById('idBL').style.display='inline-block'">Back Log</a>
+	<a onclick="document.getElementById('idIB').style.display='inline-block'">Ice Box</a>
+</div>
+
+<div class="content">
+  <% if alert %>
+    <div class="alert-message">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  <p id="notice"><%= notice %></p>
+
+  <div>
+    <% unless @results.nil? %>
+      <div id="search-box">
+        <span onclick="this.parentElement.style.display='none'" class="btn-close">x</span>
+        <h3 class="category-header">Search Results</h3>
+        <div>
+          <div>
+            <h4> <%= pluralize(@results.count,"result") %> matched your search query </h4>
+            <% @results.each do |feature| %>
+              <%= render partial: "features/list_searched_features", locals:{feature: feature} %>
+            <% end %>    
+
+          </div>
+        </div>  
+      </div>
+    <% end %>
+
+    <div id="idCI">
+      <span onclick="this.parentElement.style.display='none'" class="btn-close">x</span>
+      <h3 class="category-header">Current Iteration</h3>
+      <div>
+        <% if current_user == @project.user %>
+          <%= render partial: "features/form", locals: {fname: "current-iteration" }%>
+        <%end%>
+      </div>
+      <div>
+        <% if current_user == @project.user %>
+          <%= render partial: "features/list_features", locals: {features: @project.features.select {|feature| feature.category_name=="current-iteration"}} %>
+        <% else %>
+          <%= render partial: "features/list_assigned_features", locals: {features: @project.features.select {|feature| feature.category_name=="current-iteration" && feature.user_id==current_user.id}} %>
+        <% end%>
+      </div>
+    </div>
+
+    <div id="idBL">
+      <span onclick="this.parentElement.style.display='none'" class="btn-close">x</span>
+      <h3>Backlog</h3>
+      <div>
+        <% if current_user == @project.user %>
+          <%= render partial: "features/form", locals: {fname: "current-iteration" }%>
+        <%end%>
+      </div>
+      <div>
+        <% if current_user == @project.user %>
+          <%= render partial: "features/list_features", locals: {features: @project.features.select {|feature| feature.category_name=="backlog"} }%>
+        <% else %>
+          <%= render partial: "features/list_assigned_features", locals: {features: @project.features.select {|feature| feature.category_name=="backlog" && feature.user_id==current_user.id} }%>
+        <% end%>
+      </div>
+    </div>
+    
+    <div id="idIB">
+      <span onclick="this.parentElement.style.display='none'" class="btn-close">x</span>
+      <h3>Ice box</h3>
+      <div>
+        <% if current_user == @project.user %>
+          <%= render partial: "features/form", locals: {fname: "current-iteration" }%>
+        <%end%>
+      </div>
+      <div>
+        <% if current_user == @project.user %>
+          <%= render partial: "features/list_features", locals: {features: @project.features.select {|feature| feature.category_name=="ice-box"}} %>
+        <% else %>
+          <%= render partial: "features/list_assigned_features", locals: {features: @project.features.select {|feature| feature.category_name=="ice-box" && feature.user_id == current_user.id}} %>
+        <% end %>
+      </div>
+    </div>  
+  </div>
+</div>
+
+
+<script>
+  $("#search-button").click(()=> {
+    $("#search-box").toggle()
+  })
+</script>

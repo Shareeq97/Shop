@@ -1,0 +1,25 @@
+// Place all the styles related to the Notifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//_notificcation.html.erb
+
+.notification-item{
+	padding: 5px 0px 5px 10px;
+	border-top: 1px solid lightgrey;
+}
+
+.notification-item:hover{
+	background-color: #e9edf5;
+}
+
+.notify-link{
+	padding: 5px 0px 5px 0px;
+	color: black;
+}
+
+.notify-link:hover{
+	text-decoration: none;
+	color: black;
+}
