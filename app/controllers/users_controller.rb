@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!, except: [:new, :create]	
 	before_action :is_correct_user?, except: [:index, :new, :create]
-	before_action :find_user?, only: [:show, :edit, :update, :destroy ]
+	before_action :find_user?, only: [:show, :edit, :update, :destroy]
 
 	def index
 		@project = current_user.projects.build

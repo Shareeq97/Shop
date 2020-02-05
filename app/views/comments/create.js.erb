@@ -1,6 +1,6 @@
-var user = $("<span>").append($("<strong>").text("@<%=@comment.user.to_s%>: ").addClass('commenter'));
-var comment = $("<span>").append("<%=@comment.comment_name%>");
+var user = $("<span>").append($("<strong>").text("@<%= @comment.user.email %>: ").addClass('commenter'));
+var comment = $("<span>").append("<%= @comment.comment_name %>");
 var li = $("<li>").append(user).append(comment);
-$("#comment-box-<%= @comment.feature.id%>").append(li);
-$("#searched-comment-box-<%= @comment.feature.id%>").append(li);
+$("#comment-box-<%= @comment.feature.id %>").append(li);
+$("#searched-comment-box-<%= @comment.feature.id %>").append(li);
 console.log(li);

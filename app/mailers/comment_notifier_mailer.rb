@@ -1,7 +1,7 @@
 class CommentNotifierMailer < ApplicationMailer
 	default from: 'shop@assignmentProject.com'
  
-  def notifymail(recipient, comment)
+  def notify_mail(recipient, comment)
     @recipient = recipient
     @comment = comment
     @url  = 'http://localhost:3000/login'

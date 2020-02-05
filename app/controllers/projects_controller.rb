@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
 				render "show"
 		else
 			regexp = Regexp.new(params[:search],"i")
-			@project.features.each do |feature|
+			@project.features.includes(:user, :documents, :tasks).each do |feature|
 				if @user == feature.user
 					if feature.feature_name.match(regexp)
 						@results<<feature
@@ -45,6 +45,7 @@ class ProjectsController < ApplicationController
 		
 	def show
 		@project = Project.find(params[:id])
+		@features = @project.features.includes(:documents, :tasks, { comments: :user } )
 	end
 	
 	def destroy
@@ -58,3 +59,4 @@ class ProjectsController < ApplicationController
 			params.required(:project).permit(:project_name)
 		end
 end
+

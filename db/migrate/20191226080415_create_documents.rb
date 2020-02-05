@@ -7,7 +7,7 @@ class CreateDocuments < ActiveRecord::Migration[5.2]
 	    t.datetime :document_updated_at
       t.references :feature, foreign_key: true
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

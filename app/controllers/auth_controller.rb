@@ -1,9 +1,9 @@
 class AuthController < ApplicationController
   include AuthHelper
-  require 'securerandom'
+  require 'securerandom'  
 
  	def gettoken
- # Exchange the auth code for an access token
+    # Exchange the auth code for an access token
     token = get_token_from_code params[:code]
     
     # Parse the id token to get the user's information (name, email)
@@ -18,12 +18,11 @@ class AuthController < ApplicationController
         name_parts = [nil, nil]
       end
       # If the user doesn't exist, create a new record
-      salt = BCrypt::Engine.generate_salt
-      random_val = SecureRandom.hex(rand(8..12))
-      user = User.create!(first_name: name_parts[0],
+      random_val = SecureRandom.hex(6)
+      user = User.create(first_name: name_parts[0],
       										last_name: name_parts[1],
                          	email: user_info['preferred_username'],
-                         	password: BCrypt::Engine.hash_secret(random_val, salt))
+                         	password: random_val)
     end
     
     # Save the user ID in the session

@@ -7,7 +7,6 @@ module ApplicationCable
     end
 
     protected
-
     def find_verfied_user
       if current_user = User.find_by(id: request.session[:user_id])     
         current_user

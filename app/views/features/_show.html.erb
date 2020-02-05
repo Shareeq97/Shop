@@ -24,67 +24,67 @@
     </tr>
     <tr>
       <td><strong>Feature Status:</strong></td>
-      <td><%= select "feature_status", "#{feature.id}", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], :selected => feature.feature_status) %>
+      <td><%= select "feature_status", "#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status) %>
       </td>
     </tr>
     <tr>
       <td><strong>Assign to:</strong></td>
-      <td><%= select("feature", "#{feature.id}", User.all.collect { |user| [user.to_s, user.id]}, { :prompt => "Select One", :selected => feature.user_id, onchange: "update_member(this.value)"}) %>
+      <td><%= select("feature", "#{ feature.id }", User.all.collect { |user| [user.email, user.id] }, { prompt: "Select One", selected: feature.user_id, onchange: "update_member(this.value)" }) %>
       </td>
     </tr>
   </tbody>
 </table>
 <br>
-<% if feature.documents.empty?%>
+<% if feature.documents.empty? %>
   <div>
-    <%= render partial: "documents/form", locals: {feature: feature } %>
+    <%= render partial: "documents/form", locals: { feature: feature } %>
   </div>
 <% else %>
   <div>
-    <%= render partial: "documents/list_document", locals: {feature: feature } %>
+    <%= render partial: "documents/list_document", locals: { feature: feature } %>
   </div>
 <% end %>
 <br>
 <div>
-  <%= render partial: "tasks/list_tasks", locals: {feature: feature} %>
+  <%= render partial: "tasks/list_tasks", locals: { feature: feature } %>
 </div>
 <br>
 <div>
-  <%= render partial: "tasks/form", locals: {feature: feature } %>
+  <%= render partial: "tasks/form", locals: { feature: feature } %>
 </div>
 <br>
 <div class="comment-section">
   <div>
-    <%= render partial: "comments/comment_list", locals: {feature: feature} %>
+    <%= render partial: "comments/comment_list", locals: { feature: feature } %>
   </div>
   <br>
   <div>
-    <%= render partial: "comments/form", locals: {feature: feature} %>
+    <%= render partial: "comments/form", locals: { feature: feature } %>
   </div>
 </div>
 
 <script>
   $(document).ready(function(){
-    $('#feature_<%= feature.id%>').select2();
+    $('#feature_<%= feature.id %>').select2();
 
-    $("#feature_<%= feature.id%>").change(function(){
+    $("#feature_<%= feature.id %>").change(function(){
       jQuery.ajax({
-        url: "/features/<%= feature.id%>",
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        url: "/features/<%= feature.id %>",
+        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
         type: "PATCH",
-         data: {"member_id": this.value},
+         data: { "member_id": this.value },
           success: function(data) {
             alert("Member successfully assigned.");
           }
       });
     });
 
-    $("#feature_status_<%= feature.id%>").bind('change',function(){
+    $("#feature_status_<%= feature.id %>").bind('change',function(){
       jQuery.ajax({
-        url: "/features/<%= feature.id%>/update_status",
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        url: "/features/<%= feature.id %>/update_status",
+        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
         type: "PATCH",
-        data: {"feature_status": this.value},
+        data: { "feature_status": this.value },
         success: function(data) {
           alert("Status successfully set.");
         }

@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 2020_01_20_123549) do
   end
 
   create_table "features", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "category_name"
-    t.string "feature_name"
+    t.string "category_name", null: false
+    t.string "feature_name", null: false
     t.text "feature_description"
-    t.integer "ticket_id"
+    t.integer "ticket_id", null: false
     t.string "feature_status", default: "Unstarted"
     t.bigint "project_id"
     t.bigint "user_id"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 2020_01_20_123549) do
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.string "action"
+    t.integer "recipient_id", null: false
+    t.string "action", null: false
     t.bigint "user_id"
     t.bigint "feature_id"
     t.datetime "created_at", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_123549) do
   end
 
   create_table "projects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "project_name"
+    t.string "project_name", null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_123549) do
   end
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "task_name"
+    t.string "task_name", null: false
     t.boolean "task_completion", default: false
     t.bigint "feature_id"
     t.datetime "created_at", null: false
@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(version: 2020_01_20_123549) do
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
+    t.string "email", null: false
     t.string "phone_number"
-    t.string "password_digest"
+    t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_123549) do
   add_foreign_key "comments", "users"
   add_foreign_key "documents", "features"
   add_foreign_key "features", "projects"
+  add_foreign_key "features", "users"
   add_foreign_key "notifications", "features"
   add_foreign_key "notifications", "users"
   add_foreign_key "projects", "users"

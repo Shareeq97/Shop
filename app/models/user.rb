@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
-  validates :password, length: {:within => 8..12}
+  validates :password, length: { within: 8..12 }
   validates :email, presence: true
-  validates :phone_number, numericality: true, uniqueness: true, length: {minimum: 10, maximum: 15}, :allow_blank => true
+  validates :phone_number, numericality: true, uniqueness: true, length: { minimum: 10, maximum: 15 }, allow_blank: true
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   has_many :projects
@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :notifications, foreign_key: :recipient_id
 
   def to_s
-  	"#{first_name} #{last_name}"
+  	"#{ first_name } #{ last_name }"
   end
 end
 

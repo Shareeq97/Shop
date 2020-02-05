@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
 
 	def create
 		@document = @feature.documents.create(document_params)
-		if @document.save!
+		if @document.save
 			redirect_to user_project_path(@feature.project.user_id, @feature.project_id), notice: 'document Uploaded'
 		end
 	end

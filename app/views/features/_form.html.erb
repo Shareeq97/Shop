@@ -3,15 +3,15 @@
     <div class="panel panel-default">
       <div class="panel-head">
         <h4 class="panel-title">
-          <button class="btn add" type="button" data-toggle="collapse" data-target=<%="##{local_assigns[:fname]}"%> >ADD FEATURE</button>
+          <button class="btn add" type="button" data-toggle="collapse" data-target=<%= "##{ local_assigns[:fname] }" %> >ADD FEATURE</button>
         </h4>
       </div>
-      <div id= "<%= "#{local_assigns[:fname]}" %>" class="panel-collapse collapse">
+      <div id= "<%= "#{ local_assigns[:fname] }" %>" class="panel-collapse collapse">
         <div class="panel-body">
           <div>
               <div class="field">
                 <strong>Category Name:</strong>
-                <%= form.text_field :category_name, id: 'input',value: "#{local_assigns[:fname]}", readonly: true %>
+                <%= form.text_field :category_name, id: 'input',value: "#{ local_assigns[:fname] }", readonly: true %>
               </div>
               
               <div class="field">
@@ -21,7 +21,7 @@
 
               <div class="field">
                 <strong>Feature Description:</strong><br>
-                <%= form.text_area :feature_description, :class => 'feat-desc' %>
+                <%= form.text_area :feature_description, class: 'feat-desc' %>
               </div>
 
               <div class="actions">
@@ -33,7 +33,3 @@
     </div>
   </div>
 <% end %>
-
-
-
-

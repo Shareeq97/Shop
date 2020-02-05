@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 	before_action :authenticate_user!
-	before_action :is_correct_user?, except: [:update_task]
+	before_action :is_correct_user?, except: [:create, :destroy, :update_task]
 	before_action :set_feature, only: [:create, :destroy]
 
 
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
 	def update_task
   	@task = Task.find(params[:id])
-		@task.update_attributes(:task_completion => params[:task_completion])
+		@task.update_attributes(task_completion: params[:task_completion])
 	end
 
 	private

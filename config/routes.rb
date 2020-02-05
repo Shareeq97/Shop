@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'page#index'
   get 'page/index'
   
-  get 'authorize' => 'auth#gettoken'
+  get 'authorize', to: 'auth#gettoken'
   
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
@@ -27,5 +27,5 @@ Rails.application.routes.draw do
 
   get 'notifications/show'
 
-  mount ActionCable.server =>'/cable'
+  mount ActionCable.server => '/cable'
 end

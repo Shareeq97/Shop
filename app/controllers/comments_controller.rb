@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
      		end
 
       	if recipient
-   				CommentNotifierMailer.notifymail(recipient, @comment).deliver_now
+   				CommentNotifierMailer.notify_mail(recipient, @comment).deliver_now
       		Notification.create(recipient: recipient, user: current_user, feature: @feature, action: "commented")
      		end
 	 		end

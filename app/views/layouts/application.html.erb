@@ -22,11 +22,11 @@
           <div class="navbar-header">
             <%= link_to "PM Tool", page_index_path, class: "navbar-brand" %>
           </div>
-          <% if controller_name=="projects" %>
+          <% if controller_name == "projects" %>
             <div class="navbar-form navbar-left search-section">
               <p>
                 <%= form_tag(search_user_project_path, method: :get) do %>
-                  <%= text_field_tag "search", nil, placeholder: "Search by name...",:size => "35%" %>
+                  <%= text_field_tag "search", nil, placeholder: "Search by name...", size: "35%" %>
                   <%= submit_tag "Search !", id: "search-button"%>
                 <% end %>
               </p>
@@ -38,10 +38,10 @@
               <li><%= link_to 'Home', users_path %></li>
               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Notifications <span class="notification_count">(<%= current_user.notifications.count %>)</span> <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <%= render partial: "notifications/show", locals: {notifications: current_user.notifications.order("created_at DESC")} %>
+                  <%= render partial: "notifications/show", locals: { notifications: current_user.notifications.order("created_at DESC") } %>
                 </ul>
               </li>
-              <li><%= link_to "Hi, <strong>#{current_user.to_s}</strong>".html_safe, user_path(current_user.id) %>
+              <li><%= link_to "Hi, <strong>#{ current_user.email }</strong>".html_safe, user_path(current_user.id) %>
               </li>
               <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Log Out'.html_safe, logout_path %></li>
             <% elsif request.env['PATH_INFO'] == "/signup" %>

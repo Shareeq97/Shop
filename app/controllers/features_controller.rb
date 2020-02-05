@@ -36,7 +36,7 @@ class FeaturesController < ApplicationController
 		recipients =	[@feature.project.user]
 		end
 		recipients.each do |recipient|
-			FeatureStatusNotifierMailer.notifymail(recipient, @feature).deliver_now
+			FeatureStatusNotifierMailer.notify_mail(recipient, @feature).deliver_now
 		end
 
 		if @feature.user_id and @feature.project.user == current_user

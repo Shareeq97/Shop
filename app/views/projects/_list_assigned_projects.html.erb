@@ -1,4 +1,4 @@
-<% p = current_user.features.map do |f| %>
+<% p = current_user.features.includes(:project).map do |f| %>
   <% f.project %>
 <% end %>
 <% p =  p.to_set %>
