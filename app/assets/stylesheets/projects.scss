@@ -47,6 +47,10 @@ body {
   color: white;
 }
 
+.crossable{
+  cursor: pointer
+}
+
 div.content {
   margin-left: 14%;
   height: 91.5vh;
@@ -66,8 +70,7 @@ div.content {
   border: 1px solid green;
   border-left: none;
   padding: 10px; 
-  min-width: 33.11%;
-  max-width: 100%;
+  width: 33.11%;
   min-height: 91vh;
   max-height: 91vh;
   resize: both;

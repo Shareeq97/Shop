@@ -6,13 +6,16 @@ class TasksController < ApplicationController
 
 	def create
 		@task = @feature.tasks.create(task_params)
-		if @task.save
-			redirect_to user_project_path(@feature.project.user_id, @feature.project_id), notice: 'Task Created'
-		else
-			@task.errors.full_messages.each do |message|
-       	flash[:alert] = message
-     	end
-			redirect_to user_project_path(@feature.project.user_id, @feature.project_id)
+  	respond_to do |format|
+    	if @task.save
+    		format.js
+			else
+				@task.errors.full_messages.each do |message|
+       		flash[:alert] = message
+     		end
+        format.js # call create.js.erb on save errors
+				redirect_to user_project_path(@feature.project.user_id, @feature.project_id)
+			end
 		end
 	end
 

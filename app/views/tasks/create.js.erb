@@ -1,0 +1,9 @@
+var li = $("<li class='btn' id='<%= @task.task_name%>' >").html("<%= escape_javascript(render partial: 'tasks/show', locals: { task: @task }) %>");
+$("#task-list-<%=@task.feature.id%>").append(li);
+var total_count = $("#total-tasking-<%= @task.feature.id %>").text();
+total_count = Number(total_count) + 1;
+$("#total-tasking-<%= @task.feature.id %>").text(total_count);
+$(".feature-task-form").each(function(index) {
+	this.reset();
+});
+

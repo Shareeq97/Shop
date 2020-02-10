@@ -2,6 +2,7 @@ class Feature < ApplicationRecord
  	before_create :assign_unique_ticket_id
 
   validates :feature_name, presence: true, uniqueness: { scope: :project_id }
+
   validates! :ticket_id, uniqueness: true
   
 	belongs_to :project

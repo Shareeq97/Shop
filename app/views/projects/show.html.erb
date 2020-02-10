@@ -3,9 +3,9 @@
     <%= @project.project_name %>
   </div>
   <%= link_to "Home", users_path, method: :get %>
-  <a onclick="document.getElementById('idCI').style.display='inline-block'">Current Iteration</a>
-	<a onclick="document.getElementById('idBL').style.display='inline-block'">Back Log</a>
-	<a onclick="document.getElementById('idIB').style.display='inline-block'">Ice Box</a>
+  <a class="crossable" onclick="document.getElementById('idCI').style.display='inline-block'">Current Iteration</a>
+	<a class="crossable" onclick="document.getElementById('idBL').style.display='inline-block'">Back Log</a>
+	<a class="crossable" onclick="document.getElementById('idIB').style.display='inline-block'">Ice Box</a>
 </div>
 
 <div class="content">

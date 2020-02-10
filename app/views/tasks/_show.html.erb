@@ -24,7 +24,12 @@
             var checked = document.getElementById("feature-task-<%= task.id %>").checked?1:-1;
             var current_value = parseInt($("#tasking-<%= task.feature.id %>").text());
             $("#tasking-<%= task.feature.id %>").text(current_value + checked+"");
-            alert('success');
+            if (checked == 1) {
+              alert('Task Done');
+            }
+            else {
+              alert('Task Not Done')
+            }
           }
         });
     });

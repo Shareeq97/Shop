@@ -1,5 +1,5 @@
 	<div>
-		<%= form_with(model: [feature.comments.build], url: user_project_feature_comments_path( feature.project.user, feature.project, feature), method: "post") do |form| %>
+		<%= form_with(model: [feature.comments.build], url: user_project_feature_comments_path( feature.project.user, feature.project, feature), method: "post", class: "feature-comment-form") do |form| %>
 		  <div class="field">
 		  	<table class="comment-table">
 		  		<tr>

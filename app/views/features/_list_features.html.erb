@@ -3,10 +3,10 @@
   <div class="panel-feature-list panel-default">
     <div class="panel-head">
       <h4 class="panel-title">
-        <button class="btn" type="button" data-toggle="collapse" data-target="#<%= feature.feature_name %>"> <%= feature.feature_name %> </button>
+        <button class="btn" type="button" data-toggle="collapse" data-target="#<%= feature.feature_name.gsub(/\s+/, '') %>"> <%= feature.feature_name %> </button>
       </h4>
     </div>
-    <div id="<%= feature.feature_name %>" class="panel-collapse collapse">
+    <div id="<%= feature.feature_name.gsub(/\s+/, '') %>" class="panel-collapse collapse">
       <div class="panel-body">
         <div>
       		<%= render partial: "features/show" , locals: { feature: feature } %>

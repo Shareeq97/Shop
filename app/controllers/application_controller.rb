@@ -10,8 +10,8 @@ class ApplicationController < ActionController::Base
 	  	if session[:user_id]
 	  		@current_user = User.find(session[:user_id])
 	  	else
-	      flash[:alert] = "You must login first"
-	  		redirect_to login_path,notice: "You must login first"
+	      flash[:alert] = "You must login with ur email id"
+	  		redirect_to login_path
 	  	end
 	  end
 

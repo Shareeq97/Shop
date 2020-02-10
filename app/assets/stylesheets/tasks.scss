@@ -11,6 +11,10 @@
 	border-bottom: 1px solid black;
 }
 
+.task-table tr td:nth-child(odd){
+	width: 15%;
+}
+
 .task-table td:nth-child(2){
 	text-align: left;
 }  
