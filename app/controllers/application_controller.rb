@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
+	
+	helper_method	 :current_user, :is_logged_in, :authenticate_user!, :is_correct_user?, :find_user?
 
 	private
 		def current_user
@@ -32,5 +34,4 @@ class ApplicationController < ActionController::Base
     	@user = User.find(user_id)  		   	
     end
 
-		helper_method	 :current_user, :is_logged_in, :authenticate_user!, :is_correct_user?, :find_user?
 end

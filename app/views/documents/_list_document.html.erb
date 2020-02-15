@@ -1,6 +1,6 @@
 <h4><strong> Attachment</strong></h4>
 <% feature.documents.reload.each do |document| %>
-	<table style="margin: 0 auto; width: 40%;">
+	<table class="document-list">
 		<tr>
 			<td>
 				<%= link_to "attachment", user_project_feature_document_path(document.feature.project.user_id, document.feature.project_id, document.feature_id, document.id), class: "glyphicon glyphicon-paperclip attachment-link", title: document.document_file_name, target: :_blank, method: :get %>				

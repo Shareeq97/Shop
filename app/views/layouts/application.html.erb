@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -25,8 +25,8 @@
           <% if controller_name == "projects" %>
             <div class="navbar-form navbar-left search-section">
               <p>
-                <%= form_tag(search_user_project_path, method: :get) do %>
-                  <%= text_field_tag "search", nil, placeholder: "Search by name...", size: "35%" %>
+                <%= form_tag(search_user_project_path, method: :get, remote: true) do %>
+                  <%= text_field_tag "search", @value, placeholder: "Search by name...", size: "35%" %>
                   <%= submit_tag "Search !", id: "search-button"%>
                 <% end %>
               </p>
@@ -45,10 +45,8 @@
               </li>
               <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Log Out'.html_safe, logout_path %></li>
             <% elsif request.env['PATH_INFO'] == "/signup" %>
-              <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Home'.html_safe, root_path %></li>
               <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Log In'.html_safe, login_path %></li>
             <% elsif request.env['PATH_INFO'] == "/login" %>
-              <li><%= link_to '<span class="glyphicon glyphicon-log-in"></span> Home'.html_safe, root_path %></li>
               <li><%= link_to '<span class="glyphicon glyphicon-user"></span> Sign Up'.html_safe, signup_path %></li>
             <% else %>
               <li><%= link_to '<span class="glyphicon glyphicon-user"></span> Sign Up'.html_safe, signup_path %></li>

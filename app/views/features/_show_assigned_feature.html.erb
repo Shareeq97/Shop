@@ -1,11 +1,11 @@
-<table>
+<table class="feat-details-show">
   <tbody >
     <tr>
-      <td><strong>Feature Ticket Id :</strong></td>
+      <td><strong>Ticket Id :</strong></td>
       <td> <%= feature.ticket_id %></td>
     </tr>
     <tr>
-      <td><strong>Feature Name :</strong></td> 
+      <td><strong>Name :</strong></td> 
       <td><%= feature.feature_name %></td>
     </tr>
     <tr>
@@ -13,13 +13,13 @@
       <td><%= feature.category_name %></td>
     </tr>
     <tr>
-      <td colspan="2"><strong>Feature Description :</strong>
+      <td colspan="2"><strong>Description :</strong>
     </tr>
     <tr>
       <td colspan="2"><p class="feature-desc"><%= feature.feature_description %></p></td>
     </tr>
     <tr>
-      <td><strong>Feature Status:</strong></td>
+      <td><strong>Status:</strong></td>
       <td><%= select "feature_status", "#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status) %>
       </td>
     </tr>

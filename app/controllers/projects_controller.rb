@@ -8,22 +8,26 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@results = []
 
-		if params[:search].blank?
-				render "show"
-		else
+
+
+		unless params[:search].blank?
+			@value = params[:search]
 			regexp = Regexp.new(params[:search],"i")
 			@project.features.includes(:user, :documents, :tasks).each do |feature|
 				if @user == feature.user
-					if feature.feature_name.match(regexp)
+					if feature.feature_name.match(regexp) || feature.ticket_id.to_s.match(regexp)
 						@results<<feature
 					end
 				elsif @user == @project.user
-					if feature.feature_name.match(regexp)
+					if feature.feature_name.match(regexp) || feature.ticket_id.to_s.match(regexp)
 						@results<<feature
 					end
 				end
+								
+				respond_to do |format|
+					format.js
+				end
 			end
-			render "show"
 		end
 	end
 	

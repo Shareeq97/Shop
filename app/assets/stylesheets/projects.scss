@@ -2,10 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 *{
 	margin:0;
 	padding:0;
+}
+
+.project-list{
+  margin-top: 10px;
+  border: 2px solid black;
+  width: 30%;
+  text-align: center;
+}
+
+.project-list td{
+  border: 2px solid black;
 }
 
 body {
@@ -22,12 +32,14 @@ body {
 
 .sidebar .project-pro {
   background-color: #88162e;
-  height: 70px;
-  font-size: 50px;
+  padding: 5px;
+  font-size: 35px;
   font-family: cursive;
   font-weight: bold;
   text-align:center;
   color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar a {
@@ -70,9 +82,9 @@ div.content {
   border: 1px solid green;
   border-left: none;
   padding: 10px; 
-  width: 33.11%;
-  min-height: 91vh;
-  max-height: 91vh;
+  width: (99.35%/3);
+  min-height: 91.5vh;
+  max-height: 91.5vh;
   resize: both;
   overflow: auto;
 }

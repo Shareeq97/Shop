@@ -5,19 +5,17 @@
 
 <br>
 
-  <table style="border: 2px solid black">
+  <table class="project-list">
     <thead>
       <tr>
-        <th>Assigned Project</th>
-        <th colspan="3"></th>
+        <th colspan="3">ASSIGNED PROJECT LIST</th>
       </tr>
     </thead>
-
     <tbody>
       <% p.each do |project| %>
-      <tr style="border: 2px solid black">
-        <td style="border: 2px solid black"><%= link_to project.project_name, user_project_path(current_user.id, project.id), method: :get %></td>
-        <td style="border: 2px solid black"><%= link_to 'Show', user_project_path(current_user.id, project.id) %></td>
+      <tr>
+        <td><%= link_to project.project_name, user_project_path(current_user.id, project.id), method: :get %></td>
+        <td><%= link_to 'Show', user_project_path(current_user.id, project.id) %></td>
       </tr>
       <% end %>
     </tbody>

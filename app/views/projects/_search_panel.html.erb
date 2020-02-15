@@ -1,0 +1,10 @@
+<span onclick="reset_panels(this)" class="btn-close">x</span>
+<h3 class="category-header">Search Results</h3>
+<div>
+  <div>
+    <h4> <%= pluralize(@results.count,"result") %> matched your search query </h4>
+    <% @results.each do |feature| %>
+      <%= render partial: "features/list_searched_features", locals:{ feature: feature } %>
+    <% end %>    
+  </div>
+</div>  

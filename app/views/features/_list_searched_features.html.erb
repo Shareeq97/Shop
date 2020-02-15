@@ -5,7 +5,7 @@
       </h4>
     </div>
     <div id="searched<%= feature.feature_name.gsub(/\s+/, '') %>" class="panel-collapse collapse">
-      <div class="panel-body">
+      <div class="panel-body2">
         <div>
           <% if feature.user_id and feature.user_id == current_user.id %>
             <%= render partial: "features/show_searchedassig_feature" , locals: { feature: feature } %>

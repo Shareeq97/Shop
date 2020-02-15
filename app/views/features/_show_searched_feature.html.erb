@@ -1,11 +1,11 @@
-<table>
+<table class="feat-details-show">
   <tbody>
     <tr>
-      <td><strong>Feature Ticket Id :</strong></td>
+      <td><strong>Ticket Id :</strong></td>
       <td> <%= feature.ticket_id %></td>
     </tr>
     <tr>
-      <td><strong>Feature Name :</strong></td> 
+      <td><strong>Name :</strong></td> 
       <td><%= feature.feature_name %></td>
     </tr>
     <tr>
@@ -13,7 +13,7 @@
       <td><%= feature.category_name %></td>
     </tr>
     <tr>
-      <td colspan="2"><strong>Feature Description :</strong>
+      <td colspan="2"><strong>Description :</strong>
     </tr>
     <tr>
       <td colspan="2"><p class="feature-desc"><%= feature.feature_description %></p></td>
@@ -23,13 +23,13 @@
       </td>
     </tr>
     <tr>
-      <td><strong>Feature Status:</strong></td>
+      <td><strong>Status:</strong></td>
       <td><%= select "feature_status", "#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status) %>
       </td>
     </tr>
     <tr>
       <td><strong>Assign to:</strong></td>
-      <td><%= select("feature", "#{ feature.id }", User.all.collect { |user| [user.email, user.id] }, { prompt: "Select One", selected: feature.user_id, onchange: "update_member(this.value)"}) %>
+      <td><%= select("feature", "#{ feature.id }", User.all.collect { |user| [user.username, user.id] }, { prompt: "Select One", selected: feature.user_id }) %>
       </td>
     </tr>
   </tbody>
@@ -45,6 +45,37 @@
 <br>
 <script>
   $(document).ready(function(){
+    $("#feature_status_<%= feature.id %>").bind('change',function(){
+      jQuery.ajax({
+        url: "/features/<%= feature.id %>/update_status",
+        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
+        type: "PATCH",
+        data: { "feature_status": this.value },
+        success: function(data) {
+          alert("Status successfully set.");
+        }
+      });
+    });
+  });
+</script>
+
+
+<script>
+  $(document).ready(function(){
+    $('#feature_<%= feature.id %>').select2();
+
+    $("#feature_<%= feature.id %>").change(function(){
+      jQuery.ajax({
+        url: "/features/<%= feature.id %>",
+        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
+        type: "PATCH",
+         data: { "member_id": this.value },
+          success: function(data) {
+            alert("Member successfully assigned.");
+          }
+      });
+    });
+
     $("#feature_status_<%= feature.id %>").bind('change',function(){
       jQuery.ajax({
         url: "/features/<%= feature.id %>/update_status",

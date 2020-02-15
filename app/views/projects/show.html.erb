@@ -16,23 +16,7 @@
   <% end %>
   <p id="notice"><%= notice %></p>
 
-  <div>
-    <% unless @results.nil? %>
-      <div id="search-box">
-        <span onclick="this.parentElement.style.display='none'" class="btn-close">x</span>
-        <h3 class="category-header">Search Results</h3>
-        <div>
-          <div>
-            <h4> <%= pluralize(@results.count,"result") %> matched your search query </h4>
-            <% @results.each do |feature| %>
-              <%= render partial: "features/list_searched_features", locals:{ feature: feature } %>
-            <% end %>    
-
-          </div>
-        </div>  
-      </div>
-    <% end %>
-
+  <div id="project-panel-parent">
     <div id="idCI">
       <span onclick="this.parentElement.style.display='none'" class="btn-close">x</span>
       <h3 class="category-header">Current Iteration</h3>
@@ -85,11 +69,4 @@
     </div>  
   </div>
 </div>
-
-
-<script>
-  $("#search-button").click(()=> {
-    $("#search-box").toggle()
-  })
-</script>
 

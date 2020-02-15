@@ -6,7 +6,7 @@
         </h4>
       </div>
       <div id= "<%="task-#{ feature.id }" %>" class="panel-collapse collapse">
-        <div class="panel-body">
+        <div class="panel-body2">
           <div>
             <%= form_with(model: [feature.tasks.build], url: user_project_feature_tasks_path( @user, @project, feature), method: "post", class: "feature-task-form") do |form| %>
               <div class="field">

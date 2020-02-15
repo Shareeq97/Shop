@@ -5,3 +5,20 @@
 .container{
 	width: 100%;
 }
+
+.cover-page{
+	padding: 20px;
+}
+
+.cover-page div{
+	font-size: 15px;
+}
+
+.cover-page div p:first-child{
+	margin: 0;
+	color: purple;	
+}
+
+.cover-page div p{
+ color: red;
+}

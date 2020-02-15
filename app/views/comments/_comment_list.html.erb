@@ -2,7 +2,7 @@
 		<ul class="comment-box-list" id="comment-box-<%= feature.id %>">
 			<% feature.comments.reload.each do |comment| %>
 				<li id="#{ comment.id }"> 
-					<span><strong class="commenter"><%= comment.user.email %>: </strong></span>
+					<span><strong class="commenter">@<%= comment.user.username %>: </strong></span>
   				<span><%= comment.comment_name %></span>
 				</li>
 			<% end %>

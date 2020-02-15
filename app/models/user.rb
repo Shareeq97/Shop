@@ -16,6 +16,11 @@ class User < ApplicationRecord
   def to_s
   	"#{ first_name } #{ last_name }"
   end
+
+  def username
+    username = email.split('@')
+    username = username[0]
+  end
 end
 
 
