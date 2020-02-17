@@ -19,19 +19,16 @@
       <td colspan="2"><p class="feature-desc"><%= feature.feature_description %></p></td>
     </tr>
     <tr>
-      <td><%= button_to 'Delete', user_project_feature_path(feature.project.user_id, feature.project_id, feature.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-      </td>
-    </tr>
-    <tr>
       <td><strong>Status:</strong></td>
-      <td><%= select "feature_status", "#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status) %>
+      <td><%= select_tag("feature_status_fixed_#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status), disabled: true ) %>
       </td>
     </tr>
     <tr>
       <td><strong>Assign to:</strong></td>
-      <td><%= select("feature", "#{ feature.id }", User.all.collect { |user| [user.username, user.id] }, { prompt: "Select One", selected: feature.user_id }) %>
+      <td><%= select_tag("feature_assign_fixed_#{ feature.id }", options_for_select( User.all.collect{ |u| [u.username, u.id] }, selected: feature.user_id), { prompt: "Select One", disabled: true} ) %>
       </td>
     </tr>
+
   </tbody>
 </table>
 <br>
@@ -40,52 +37,8 @@
 </div>
 <br>
 <div>
-  <%= render partial: "tasks/list_tasks", locals: { feature: feature } %>
+  <%= render partial: "tasks/list_searched_tasks", locals: { feature: feature } %>
 </div>
 <br>
-<script>
-  $(document).ready(function(){
-    $("#feature_status_<%= feature.id %>").bind('change',function(){
-      jQuery.ajax({
-        url: "/features/<%= feature.id %>/update_status",
-        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
-        type: "PATCH",
-        data: { "feature_status": this.value },
-        success: function(data) {
-          alert("Status successfully set.");
-        }
-      });
-    });
-  });
-</script>
 
-
-<script>
-  $(document).ready(function(){
-    $('#feature_<%= feature.id %>').select2();
-
-    $("#feature_<%= feature.id %>").change(function(){
-      jQuery.ajax({
-        url: "/features/<%= feature.id %>",
-        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
-        type: "PATCH",
-         data: { "member_id": this.value },
-          success: function(data) {
-            alert("Member successfully assigned.");
-          }
-      });
-    });
-
-    $("#feature_status_<%= feature.id %>").bind('change',function(){
-      jQuery.ajax({
-        url: "/features/<%= feature.id %>/update_status",
-        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
-        type: "PATCH",
-        data: { "feature_status": this.value },
-        success: function(data) {
-          alert("Status successfully set.");
-        }
-      });
-    });
-  });
-</script>
+<p class="goto"> To Make changes go to the Feature....</p>

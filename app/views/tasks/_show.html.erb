@@ -1,7 +1,7 @@
 <table class="task-table">
   <tr>
-    <td>
-      <%= check_box_tag 'task_completion', task.id , task.task_completion, class: "task-check", id: "feature-task-#{ task.id }" %>        
+    <td class="task-completion-checkboxes">
+      <%= check_box_tag 'task_completion', task.id , task.task_completion, class: "task-check", id: "feature-task-#{ task.id }-#{task.feature.id}" %>        
     </td>
     <td><%= task.task_name %></td>
     <td>
@@ -10,28 +10,3 @@
   </tr>
 </table>
 
-
-<script>
-  $(document).ready(function(){
-    $("#feature-task-<%= task.id %>").bind('change', function(){
-        $.ajax({
-          url: '/tasks/'+this.value+'/update_task',
-          beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
-          type: 'POST',
-          data: { "task_completion": this.checked },
-          success: function(){
-            
-            var checked = document.getElementById("feature-task-<%= task.id %>").checked?1:-1;
-            var current_value = parseInt($("#tasking-<%= task.feature.id %>").text());
-            $("#tasking-<%= task.feature.id %>").text(current_value + checked+"");
-            if (checked == 1) {
-              alert('Task Done');
-            }
-            else {
-              alert('Task Not Done')
-            }
-          }
-        });
-    });
-  });
-</script>

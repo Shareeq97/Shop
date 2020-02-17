@@ -7,9 +7,6 @@ class ProjectsController < ApplicationController
 		@user = User.find(params[:user_id])
 		@project = Project.find(params[:id])
 		@results = []
-
-
-
 		unless params[:search].blank?
 			@value = params[:search]
 			regexp = Regexp.new(params[:search],"i")
@@ -23,7 +20,6 @@ class ProjectsController < ApplicationController
 						@results<<feature
 					end
 				end
-								
 				respond_to do |format|
 					format.js
 				end

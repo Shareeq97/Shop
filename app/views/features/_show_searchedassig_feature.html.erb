@@ -20,7 +20,7 @@
     </tr>
     <tr>
       <td><strong>Status:</strong></td>
-      <td><%= select "feature_status", "#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status) %>
+      <td><%= select_tag("feature_status_fixed_#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status), disabled: true ) %>
       </td>
     </tr>
   </tbody>
@@ -31,40 +31,8 @@
 </div>
 <br>
 <div>
-  <%= render partial: "tasks/list_tasks", locals: { feature: feature } %>
+  <%= render partial: "tasks/list_searched_tasks", locals: { feature: feature } %>
 </div>
 <br>
 
-
-<script>
-  $(document).ready(function(){
-    $("#feature_status_<%= feature.id %>").bind('change',function(){
-      jQuery.ajax({
-        url: "/features/<%= feature.id %>/update_status",
-        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
-        type: "PATCH",
-        data: { "feature_status": this.value },
-        success: function(data) {
-          alert("Status successfully set.");
-        }
-      });
-    });
-  });
-</script>
-
-
-<script>
-  $(document).ready(function(){
-    $("#feature_status_<%= feature.id %>").bind('change',function(){
-      jQuery.ajax({
-        url: "/features/<%= feature.id %>/update_status",
-        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
-        type: "PATCH",
-        data: { "feature_status": this.value },
-        success: function(data) {
-          alert("Status successfully set.");
-        }
-      });
-    });
-  });
-</script>
+<p class="goto"> To Make changes go to the Feature....</p>

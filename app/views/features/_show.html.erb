@@ -24,12 +24,14 @@
     </tr>
     <tr>
       <td><strong>Status:</strong></td>
-      <td><%= select "feature_status", "#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status) %>
+      <td class="feature_status_selectors">
+        <%= select("feature_status", "#{ feature.id }", options_for_select([["Unstarted", "Unstarted"], ["Started", "Started"], ["Finished", "Finished"], ["Delivered", "Delivered"]], selected: feature.feature_status )) %>
       </td>
     </tr>
     <tr>
       <td><strong>Assign to:</strong></td>
-      <td><%= select("feature", "#{ feature.id }", User.all.collect { |user| [user.username, user.id] }, { prompt: "Select One", selected: feature.user_id, onchange: "update_member(this.value)" }) %>
+      <td>
+        <%= select("feature_assign", "#{ feature.id }", User.all.collect { |user| [user.username, user.id] }, { prompt: "Select One", selected: feature.user_id }) %>
       </td>
     </tr>
   </tbody>
@@ -65,30 +67,6 @@
 
 <script>
   $(document).ready(function(){
-    $('#feature_<%= feature.id %>').select2();
-
-    $("#feature_<%= feature.id %>").change(function(){
-      jQuery.ajax({
-        url: "/features/<%= feature.id %>",
-        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
-        type: "PATCH",
-         data: { "member_id": this.value },
-          success: function(data) {
-            alert("Member successfully assigned.");
-          }
-      });
-    });
-
-    $("#feature_status_<%= feature.id %>").bind('change',function(){
-      jQuery.ajax({
-        url: "/features/<%= feature.id %>/update_status",
-        beforeSend: function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
-        type: "PATCH",
-        data: { "feature_status": this.value },
-        success: function(data) {
-          alert("Status successfully set.");
-        }
-      });
-    });
+    $('#feature_assign_<%= feature.id %>').select2();
   });
 </script>

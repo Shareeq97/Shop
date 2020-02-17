@@ -1,0 +1,16 @@
+<h4><strong>Tasks(<span id="tasking2-<%= feature.id %>"> <%= Task.where(feature_id: feature, task_completion: true).count %> </span> / <span id="total-tasking-<%= feature.id %>"><%= Task.where(feature_id: feature).count %></span>)</strong></h4>
+  <div class="panel-feature-list panel-default">
+    <div class="panel-head">
+      <h4 class="panel-title">
+        <ul id="task-list-<%=feature.id%>">
+			   <% feature.tasks.reload.each do |task| %>
+          <li class="btn" id="<%= task.task_name%>">
+            <%= render partial: "tasks/show_searched_task", locals: { task: task }%>
+          </li>
+			   <% end %>  
+        </ul>
+      </h4>
+    </div>
+  </div>
+
+
