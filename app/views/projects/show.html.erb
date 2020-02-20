@@ -25,7 +25,7 @@
           <%= render partial: "features/form", locals: { fname: "current-iteration" }%>
         <% end %>
       </div>
-      <div>
+      <div class="feature-list-body">
         <% if current_user == @project.user %>
           <%= render partial: "features/list_features", locals: { features: @project.features.includes(:documents, :tasks, { comments: :user }).select { |feature| feature.category_name=="current-iteration" } } %>
         <% else %>
@@ -42,7 +42,7 @@
           <%= render partial: "features/form", locals: { fname: "backlog" } %>
         <% end %>
       </div>
-      <div>
+      <div class="feature-list-body">
         <% if current_user == @project.user %>
           <%= render partial: "features/list_features", locals: { features: @project.features.includes(:documents, :tasks, { comments: :user }).select { |feature| feature.category_name=="backlog" } } %>
         <% else %>
@@ -59,7 +59,7 @@
           <%= render partial: "features/form", locals: { fname: "ice-box" } %>
         <% end %>
       </div>
-      <div>
+      <div class="feature-list-body">
         <% if current_user == @project.user %>
           <%= render partial: "features/list_features", locals: { features: @project.features.includes(:documents, :tasks, { comments: :user }).select { |feature| feature.category_name=="ice-box" } } %>
         <% else %>

@@ -70,6 +70,13 @@ select{
   width: 70px; 
 }
 
-.goto{
+.goto-button{
+  border: none;
   color: red;
+  background-color: lightgrey; 
 }
+
+.goto-button:hover{
+  text-decoration: underline;
+}
+

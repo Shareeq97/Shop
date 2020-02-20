@@ -26,7 +26,7 @@
             <div class="navbar-form navbar-left search-section">
               <p>
                 <%= form_tag(search_user_project_path, method: :get, remote: true) do %>
-                  <%= text_field_tag "search", @value, placeholder: "Search by name...", size: "35%" %>
+                  <%= text_field_tag "search", @value, placeholder: "Search by feature name or id....", size: "35%" %>
                   <%= submit_tag "Search !", id: "search-button"%>
                 <% end %>
               </p>

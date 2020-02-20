@@ -2,7 +2,7 @@
 	<ul id="notifications">
 		<% notifications.includes(:user, { feature: :project} ).each do |notification| %>
 			<div class="notification-item">
-				<%= link_to "#{ notification.user.to_s } #{ notification.action } on <strong>feature: #{ notification.feature.feature_name }</strong>".html_safe, user_project_path(notification.user.id, notification.feature.project.id), class: "notify-link" %>
+				<%= link_to "#{ notification.user.username } #{ notification.action } on <strong>feature: #{ notification.feature.feature_name }</strong>".html_safe, user_project_path(notification.user.id, notification.feature.project.id), class: "notify-link" %>
 			</div>
 		<% end %>
 	</ul>

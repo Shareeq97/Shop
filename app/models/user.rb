@@ -18,8 +18,11 @@ class User < ApplicationRecord
   end
 
   def username
-    username = email.split('@')
-    username = username[0]
+    if first_name.blank? && last_name.blank?
+      username = email
+    else
+      username = to_s 
+    end
   end
 end
 
